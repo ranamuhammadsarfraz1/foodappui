@@ -2,10 +2,10 @@ import React from "react";
 import { View } from "react-native";
 import Home from "./screens/home";
 
- const App = () => {
+const App = () => {
   return (
-    <Home/>
+    <Home />
   )
- };
+};
 
- export default App;
+export default App;

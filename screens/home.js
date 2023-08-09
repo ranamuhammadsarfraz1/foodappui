@@ -5,12 +5,21 @@ const Home = () => {
     return (
         <View style={styles.container}>
             <View style={styles.searchBarContainer}>
+                <Image
+                    style={styles.searchIcon}
+                    source={require('../data/searchicon.png')}
+                />
                 <TextInput
                     style={styles.searchBar}
                     placeholder="Search"
+
                 />
                 <TouchableOpacity style={styles.filterButton}>
-                    <Text style={styles.filterButtonText}>Filter</Text>
+                    {/* <Text style={styles.filterButtonText}>Filter</Text> */}
+                    <Image
+                        style={styles.searchIcon}
+                        source={require('../data/iconeF.png')}
+                    />
                 </TouchableOpacity>
             </View>
 
@@ -101,17 +110,8 @@ const Home = () => {
                     <TouchableOpacity style={styles.addToCartButton} >
                         <Text style={styles.addToCartButtonText}>Add to Cart</Text>
                     </TouchableOpacity>
-
-
                 </View>
-
             </View>
-
-
-
-
-
-
         </View>
     );
 };
@@ -126,24 +126,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginBottom: 16,
-    },
-    searchBar: {
-        flex: 1,
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
+        borderWidth: .5,
         paddingHorizontal: 16,
         borderRadius: 20,
         backgroundColor: '#fff',
         elevation: 3,
+        borderColor: 'gray',
+    },
+    searchBar: {
+        flex: 1,
+        height: 45,
+        marginRight: 20,
+    },
+    searchIcon: {
+        width: 30,
+        height: 30,
+        marginRight: 8,
     },
     filterButton: {
-        marginLeft: 10,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        backgroundColor: '#ff6347',
-        borderRadius: 20,
-        elevation: 3,
+        paddingHorizontal: 3,
     },
     filterButtonText: {
         color: '#fff',
@@ -165,17 +166,17 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 50,
-        backgroundColor: 'grey',
+        backgroundColor: 'lightgrey',
         justifyContent: 'center',
         alignItems: 'center',
     },
     productImageStyle: {
-        height: 40,
-        width: 40,
+        height: 35,
+        width: 35,
         borderRadius: 40,
     },
     popularItemsContainer: {
-
+        // flexDirection: 'row',
         marginBottom: 10,
     },
     popularItemsHeading: {
@@ -183,6 +184,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: '1%',
         color: 'black',
+        marginBottom: '5%',
     },
     popularItem: {
         // borderWidth: 3,
@@ -194,30 +196,30 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     addToCartButton: {
-        backgroundColor: '#ff6347',
+        backgroundColor: 'white',
         margin: 5,
         position: "absolute",
         borderRadius: 20,
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        top: '75%',
+        paddingVertical: 15,
+        paddingHorizontal: 50,
+        top: '80%',
         left: '6%',
     },
     likeButton: {
-        height: '10%',
+        height: '8%',
         width: '10%',
         position: "absolute",
-        top: '79%',
+        top: '85%',
         left: '79%',
         tintColor: 'white',
     },
     addToCartButtonText: {
-        color: 'white',
+        color: 'black',
         fontSize: 16,
     },
     imageStyle: {
         width: '100%',
-        height: 300,
+        height: 380,
         borderRadius: 20,
     },
 });
