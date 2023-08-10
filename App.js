@@ -5,8 +5,8 @@ import ProductInfo from "./screens/ProductInfo";
 
 const App = () => {
   return (
-    // <Home />
-    <ProductInfo/>
+    <Home />
+    // <ProductInfo/>
   )
 };
 
