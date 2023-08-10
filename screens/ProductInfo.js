@@ -1,175 +1,193 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {
+    View,
+    Text,
+    StyleSheet,
+    TouchableOpacity,
+    Image
+} from 'react-native';
 
 const ProductInfo = () => {
-    return (
-        <View style={styles.container}>
-            <View style={styles.popularItemsContainer}>
-                <Text style={styles.popularItemsHeading}>Italian Hot Pizza</Text>
-                <View style={styles.popularItem}>
-                    <Image
-                        style={styles.imageStyle}
-                        source={require('../data/img.jpg')} // Replace with the actual image path
-                        resizeMode="cover"
-                    />
-                    {/* <Text style={styles.productName}>My name is Burger</Text> */}
-                    <TouchableOpacity style={styles.addToCartButton} >
-                        <Text style={styles.addToCartButtonText}>Add to Cart</Text>
-                    </TouchableOpacity>
-                    <Image
-                        style={styles.likeButton}
-                        source={require('../data/heart.png')}
-                        resizeMode="cover"
-                    />
-                </View>
-            </View>
-            <View style={styles.productDetails} >
-                <Text style={styles.productItemsHeading}>Details</Text>
-                <Text style={styles.productItemsDetails}>Pizza is a dish of Italian origin consisting of a usually round,
-                    flat base of leavened wheat-based dough topped .</Text>
-            </View>
+        const [tomatoChecked, setTomatoChecked] = React.useState(false);
 
-            <View style={styles.ingredients}>
-                <Text style={styles.ingredientsHeading}>Add Extra Ingredients</Text>
-                <View style={styles.ingreDetails}>
-                    <View style={styles.ingreDetailsImage}>
-                    <Image
-                        style={styles.imageIngredient}
-                        source={require('../data/img.jpg')} 
-                    />
-                    </View>
-                    <View style={styles.ingreDetailsHeading}>
-                    <View style={styles.ingreDetailsNmae}>
-                        <Text style={styles.ingreText}>Tomato</Text>
-                    </View>
-                    <View style={styles.ingreDetailsAmount}>
-                        <Text style={styles.ingreText}>10 Rs</Text>
-                    </View>
+        return (
+            <View style={styles.container}>
+                <View style={styles.popularItemsContainer}>
+                    <Text style={styles.popularItemsHeading}>Italian Hot Pizza</Text>
+                    <View style={styles.popularItem}>
+                        <Image
+                            style={styles.imageStyle}
+                            source={require('../data/img.jpg')} 
+                            resizeMode="cover"
+                        />
+                        <TouchableOpacity style={styles.likeButton}>
+                            <Image
+                                style={styles.likeIcon}
+                                source={require('../data/heart.png')}
+                                resizeMode="cover"
+                            />
+                        </TouchableOpacity>
                     </View>
                 </View>
+                <View style={styles.productDetails}>
+                    <Text style={styles.productItemsHeading}>Details</Text>
+                    <Text style={styles.productItemsDetails}>
+                        Pizza is a dish of Italian origin consisting of a usually round,
+                        flat base of leavened wheat-based dough topped.
+                    </Text>
+                </View>
+                <View style={styles.ingredients}>
+                    <Text style={styles.ingredientsHeading}>Add Extra Ingredients</Text>
+                    <View style={styles.ingreDetails}>
+                        <View style={styles.ingreDetailsImage}>
+                            <Image
+                                style={styles.imageIngredient}
+                                source={require('../data/img.jpg')}
+                            />
+                        </View>
+                        <View style={styles.ingreDetailsInfo}>
+                            <View style={styles.ingreDetailsRow}>
+                                <Text style={styles.ingreName}>Tomato</Text>
+                                <TouchableOpacity
+                                    onPress={() => setTomatoChecked(!tomatoChecked)}
+                                    style={styles.checkbox}
+                                >
+                                    {tomatoChecked ? (
+                                        <Image
+                                            source={require('../data/check-mark.png')}
+                                            style={styles.checkIcon}
+                                        />
+                                    ) : null}
+                                </TouchableOpacity>
+                            </View>
+                            <Text style={styles.ingreAmount}>10 Rs</Text>
+                        </View>
+                    </View>
+                </View>
+                <TouchableOpacity style={styles.addToCartButton}>
+                    <Text style={styles.addToCartButtonText}>Add to Cart</Text>
+                </TouchableOpacity>
             </View>
-        </View>
-    );
-};
+        );
+    };
 
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            padding: 20,
+            backgroundColor: '#f8f8f8',
+        },
+        popularItemsContainer: {
+            marginBottom: 20,
+        },
+        popularItemsHeading: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 10,
+            color: '#333',
+        },
+        popularItem: {
+            borderRadius: 10,
+            overflow: 'hidden',
+            elevation: 3,
+            backgroundColor: 'white',
+        },
+        imageStyle: {
+            width: '100%',
+            height: 350,
+            borderTopLeftRadius: 10,
+            borderTopRightRadius: 10,
+        },
+        addToCartButton: {
+            backgroundColor: 'black',
+            borderRadius: 20,
+            paddingVertical: 12,
+            paddingHorizontal: '35%',
+            margin: 10,
+            alignSelf: 'center',
+        },
+        addToCartButtonText: {
+            color: 'white',
+            fontSize: 16,
+        },
+        likeButton: {
+            position: 'absolute',
+            top: 10,
+            right: 10,
+        },
+        likeIcon: {
+            width: 24,
+            height: 24,
+            tintColor: '#ffba00',
+        },
+        productDetails: {
+            marginBottom: 20,
+        },
+        productItemsHeading: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 10,
+            color: '#333',
+        },
+        productItemsDetails: {
+            fontSize: 16,
+            color: '#666',
+        },
+        ingredients: {
+            marginBottom: 20,
+        },
+        ingredientsHeading: {
+            fontSize: 24,
+            fontWeight: 'bold',
+            marginBottom: 10,
+            color: '#333',
+        },
+        ingreDetails: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingVertical: 10,
+            borderBottomWidth: 1,
+            borderBottomColor: '#ccc',
+        },
+        ingreDetailsImage: {
+            marginRight: 10,
+        },
+        imageIngredient: {
+            width: 60,
+            height: 60,
+            borderRadius: 30,
+        },
+        ingreDetailsInfo: {
+            flex: 1,
+        },
+        ingreName: {
+            fontSize: 18,
+            color: '#333',
+            marginBottom: 5,
+        },
+        ingreAmount: {
+            fontSize: 16,
+            color: '#666',
+        },
+        ingreDetailsRow: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        checkbox: {
+            width: 20,
+            height: 20,
+            borderWidth: 1,
+            borderColor: '#333',
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginLeft: 'auto',
+            borderRadius: 4,
+        },
+        checkIcon: {
+            width: 16,
+            height: 16,
+            tintColor: '#333',
+        },
+    });
 
-const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        padding: 17,
-        borderWidth: 2,
-    },
-    popularItemsContainer: {
-        borderWidth: 2,
-        // flexDirection: 'row',
-        marginBottom: 10,
-    },
-    popularItemsHeading: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: '1%',
-        color: 'black',
-        marginBottom: '5%',
-    },
-    popularItem: {
-        // borderWidth: 3,
-        padding: 3,
-    },
-    productName: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    addToCartButton: {
-        backgroundColor: 'white',
-        margin: 5,
-        position: "absolute",
-        borderRadius: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 50,
-        top: '80%',
-        left: '6%',
-    },
-    likeButton: {
-        height: '8%',
-        width: '10%',
-        position: "absolute",
-        top: '85%',
-        left: '79%',
-        tintColor: 'white',
-    },
-    addToCartButtonText: {
-        color: 'black',
-        fontSize: 16,
-    },
-    imageStyle: {
-        width: '100%',
-        height: 320,
-        borderRadius: 20,
-    },
-
-    productDetails: {
-        flex: 1,
-        borderWidth: 2,
-        marginBottom: 10,
-    },
-    productItemsHeading: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: '1%',
-        color: 'black',
-    },
-    productItemsDetails: {
-        fontSize: 18,
-        // fontWeight: 'bold',
-        color: 'black',
-        // marginBottom: 10,
-    },
-    ingredients: {
-        flex: 1,
-        borderWidth: 2,
-        marginBottom: 10,
-    },
-    ingredientsHeading: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: '1%',
-        color: 'black',
-    },
-    ingreDetails: {
-        flex: 1,
-        flexDirection: 'row',
-        // justifyContent:'space-between',
-        borderWidth: 2,
-        borderColor: 'red',
-    },
-    ingreDetailsImage:{
-        flex: 1,
-        borderWidth: 2,
-        justifyContent: 'center',
-    },
-    ingreDetailsHeading:{
-        flex: 2.5,
-        borderWidth: 2,
-    },
-    ingreDetailsNmae:{
-        flex: 1,
-        borderWidth: 2,
-    },
-    ingreDetailsAmount:{
-        flex: 1,
-        borderWidth: 2,
-    },
-    imageIngredient: {
-        width: 50,
-        height: 50,
-        borderRadius: 20,
-    },
-    ingreText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: 'black',
-    },
-});
-export default ProductInfo;
+    export default ProductInfo;
