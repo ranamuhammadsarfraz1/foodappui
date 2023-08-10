@@ -120,6 +120,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 17,
+        backgroundColor: '#fff',
     },
     searchBarContainer: {
         flexDirection: 'row',
@@ -166,7 +167,7 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
         borderRadius: 50,
-        backgroundColor: 'lightgrey',
+        backgroundColor: '#FAF8F8',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -218,7 +219,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     imageStyle: {
-        width: '100%',
+        width: '95%',
         height: 380,
         borderRadius: 20,
     },
