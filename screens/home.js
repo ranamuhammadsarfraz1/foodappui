@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         top: '85%',
         left: '79%',
-        tintColor: 'white',
+        tintColor: 'green',
     },
     addToCartButtonText: {
         color: 'black',
