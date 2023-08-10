@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 
 const Home = () => {
+    const [isLiked, setIsLiked] = React.useState(false);
+
     return (
         <View style={styles.container}>
             <View style={styles.searchBarContainer}>
@@ -74,7 +76,7 @@ const Home = () => {
                     <Text style={styles.productName}>Pizza</Text>
                 </View>
             </View>
-
+            
             <View style={styles.popularItemsContainer}>
                 <Text style={styles.popularItemsHeading}>Popular Items</Text>
                 <View style={styles.popularItem}>
@@ -83,21 +85,25 @@ const Home = () => {
                         source={require('../data/img.jpg')} // Replace with the actual image path
                         resizeMode="cover"
                     />
-                    {/* <Text style={styles.productName}>My name is Burger</Text> */}
                     <TouchableOpacity style={styles.addToCartButton} >
                         <Text style={styles.addToCartButtonText}>Add to Cart</Text>
                     </TouchableOpacity>
-
-                    <Image
-
+                    <TouchableOpacity
                         style={styles.likeButton}
-                        source={require('../data/heart.png')}
-                        resizeMode="cover"
-                    />
+                        onPress={() => setIsLiked(!isLiked)}
+                    >
+                        <Image
+                            style={styles.likeIcon}
+                            source={
+                                isLiked
+                                    ? require('../data/heartFill.png')
+                                    : require('../data/heart.png')
+                            }
+                            resizeMode="cover"
+                        />
+                    </TouchableOpacity>
                 </View>
-
             </View>
-
             <View style={styles.popularItemsContainer}>
                 <Text style={styles.popularItemsHeading}>Famous Items</Text>
                 <View style={styles.popularItem}>
@@ -106,7 +112,6 @@ const Home = () => {
                         source={require('../data/img.jpg')}
                         resizeMode="cover"
                     />
-
                     <TouchableOpacity style={styles.addToCartButton} >
                         <Text style={styles.addToCartButtonText}>Add to Cart</Text>
                     </TouchableOpacity>
@@ -191,28 +196,25 @@ const styles = StyleSheet.create({
         // borderWidth: 3,
         padding: 3,
     },
-    productName: {
-        fontSize: 12,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
     addToCartButton: {
         backgroundColor: 'white',
         margin: 5,
         position: "absolute",
         borderRadius: 20,
         paddingVertical: 15,
-        paddingHorizontal: 50,
+        paddingHorizontal: 60,
         top: '80%',
         left: '6%',
     },
     likeButton: {
-        height: '8%',
-        width: '10%',
-        position: "absolute",
-        top: '85%',
-        left: '79%',
-        tintColor: 'green',
+        position: 'absolute',
+        top: '84%',
+        left: '75%',
+    },
+    likeIcon: {
+        width: 34,
+        height: 34,
+        tintColor: 'white',
     },
     addToCartButtonText: {
         color: 'black',
