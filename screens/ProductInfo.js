@@ -4,12 +4,56 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Image
+    Image,
+    FlatList
 } from 'react-native';
+
+const ingredientsData = [
+    { name: 'Tomato', amount: '10 Rs' },
+    { name: 'Cheese', amount: '15 Rs' },
+    {name: 'Pineapple', amount: '30 Rs'}
+    
+];
 
 const ProductInfo = () => {
     const [isLiked, setIsLiked] = React.useState(false);
-    const [tomatoChecked, setTomatoChecked] = React.useState(false);
+    const [selectedIngredients, setSelectedIngredients] = React.useState([]);
+
+    const toggleIngredient = (ingredientName) => {
+        if (selectedIngredients.includes(ingredientName)) {
+            setSelectedIngredients(selectedIngredients.filter(item => item !== ingredientName));
+        } else {
+            setSelectedIngredients([...selectedIngredients, ingredientName]);
+        }
+    };
+
+    const renderIngredientItem = ({ item }) => (
+        <View style={styles.ingreDetails}>
+            <View style={styles.ingreDetailsImage}>
+                <Image
+                    style={styles.imageIngredient}
+                    source={require('../data/img.jpg')}
+                />
+            </View>
+            <View style={styles.ingreDetailsInfo}>
+                <View style={styles.ingreDetailsRow}>
+                    <Text style={styles.ingreName}>{item.name}</Text>
+                    <TouchableOpacity
+                        onPress={() => toggleIngredient(item.name)}
+                        style={styles.checkbox}
+                    >
+                        {selectedIngredients.includes(item.name) ? (
+                            <Image
+                                source={require('../data/check-mark.png')}
+                                style={styles.checkIcon}
+                            />
+                        ) : null}
+                    </TouchableOpacity>
+                </View>
+                <Text style={styles.ingreAmount}>{item.amount}</Text>
+            </View>
+        </View>
+    );
 
     return (
         <View style={styles.container}>
@@ -46,31 +90,11 @@ const ProductInfo = () => {
             </View>
             <View style={styles.ingredients}>
                 <Text style={styles.ingredientsHeading}>Add Extra Ingredients</Text>
-                <View style={styles.ingreDetails}>
-                    <View style={styles.ingreDetailsImage}>
-                        <Image
-                            style={styles.imageIngredient}
-                            source={require('../data/img.jpg')}
-                        />
-                    </View>
-                    <View style={styles.ingreDetailsInfo}>
-                        <View style={styles.ingreDetailsRow}>
-                            <Text style={styles.ingreName}>Tomato</Text>
-                            <TouchableOpacity
-                                onPress={() => setTomatoChecked(!tomatoChecked)}
-                                style={styles.checkbox}
-                            >
-                                {tomatoChecked ? (
-                                    <Image
-                                        source={require('../data/check-mark.png')}
-                                        style={styles.checkIcon}
-                                    />
-                                ) : null}
-                            </TouchableOpacity>
-                        </View>
-                        <Text style={styles.ingreAmount}>10 Rs</Text>
-                    </View>
-                </View>
+                <FlatList
+                    data={ingredientsData}
+                    renderItem={renderIngredientItem}
+                    keyExtractor={(item, index) => index.toString()}
+                />
             </View>
             <TouchableOpacity style={styles.addToCartButton}>
                 <Text style={styles.addToCartButtonText}>Add to Cart</Text>
